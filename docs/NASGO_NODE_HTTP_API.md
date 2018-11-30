@@ -252,6 +252,38 @@ JSON Response Example:
 }
 ```
 
+#### 2.1.6 Generate new account (insecure)
+
+Interface Address: /api/accounts/new'
+Request Method: get
+Response Parameter Description:
+
+| Name       | Type   | Description                             |
+| ---------- | ------ | --------------------------------------- |
+| success    | bool   | true: response data return successfully |
+| secret     | string |                                         |
+| publicKey  | string |                                         |
+| privateKey | string |                                         |
+| address    | string |                                         |
+
+Request Example:
+
+```
+curl -k -X GET 'http://NASGONODEIP:9040/api/accounts/new  
+```
+
+JSON Response Example:
+
+```
+{
+"success":true,
+"secret":"stumble vacuum safe genre shoe gorilla foster once soda recipe grief warm",
+"publicKey":"0d744c3a74426d629199989cd657f3d2c9cefa9d27ba39f2cbb31f35a3027a00",
+"privateKey":"a0890f3b0e8c29dae8f2a2883f716347d8c8f26cded09f090186ebdad502918a0d744c3a74426d629199989cd657f3d2c9cefa9d27ba39f2cbb31f35a3027a00",
+"address":"NAkLZLBJocaXWn2oVXMPtJjumZDAuCzFVP"
+}
+```
+
 
 
 ### 2.2 Transactions
