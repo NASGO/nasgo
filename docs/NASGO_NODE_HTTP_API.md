@@ -1415,6 +1415,43 @@ Json example:
 
 
 
+#### 2.7.9 Get Assets Transactions List by address and asset name
+
+API Endpoint:/api/uia/transactions/my/:address/:currency
+HTTP Verb: GET
+Format: urlencoded
+
+Request Parameter Description:
+
+| Name     | Type    | Required | Description |
+| -------- | ------- | -------- | ----------- |
+| address  | string  | Y        |             |
+| currency | string  | Y        |             |
+| limit    | integer | N        |             |
+| offset   | integer | N        |             |
+
+Response Parameter Description:
+
+| Name         | Type    | Description |
+| ------------ | ------- | ----------- |
+| success      | boole   |             |
+| transactions | list    |             |
+| count        | integer |             |
+
+Request example:
+
+```
+curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/transactions/my/NJamWkUNVkYRVnzMxrTxJD5X9h4gzfFtK9/Facebook.FBC'
+```
+
+JSON example:
+
+````
+{"success":true,"transactions":[{"id":"52c4d8464ae334137dd18b5fd73dfa2eb23e05d95eebaa97576b852f6edce48e","height":"259857","blockId":"87e2b75901e3e04e66a01429f7c36d909904587e14f045c7aa463dd9d36d98d6","type":14,"timestamp":3978438,"senderPublicKey":"d51ae0c19bc435bfd5a9509565b3ddfe44a2ed9a2838347b095d49c69b113809","senderId":"NDQ1RcERyhvH5t3jv6zkjFUwe2qeeYZXex","recipientId":"NJamWkUNVkYRVnzMxrTxJD5X9h4gzfFtK9","amount":0,"fee":1000000,"signature":"4bef7b08dbc47259ec857acc752f5710072b2e22de42e87d7d65456d3792939e5fef97f139933fcb743b94d795efa8019ce6090943563a5dd6ebdcef8809be0e","signSignature":"","signatures":null,"confirmations":"2160276","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"52c4d8464ae334137dd18b5fd73dfa2eb23e05d95eebaa97576b852f6edce48e","currency":"Facebook.FBC","amount":"1000","amountShow":"100","precision":1}}},{"id":"8ca609e3b1b2f40a2ef84d33fccf71527a99d41514ee08b09e101c322e5fff75","height":"799268","blockId":"c2bf9d62a3a4858eb18c05cc18001ec1bca6d5b37aef0bce2667fdb572386ee9","type":14,"timestamp":9537501,"senderPublicKey":"f1da29b4c6c3f5d041f77fbc92477ba793b5a25a9ad642f9fe449dd463dc2b5c","senderId":"NJamWkUNVkYRVnzMxrTxJD5X9h4gzfFtK9","recipientId":"N4eUyj8rosKaPBdTxMPwq1ykJDcw97sGae","amount":0,"fee":1000000,"signature":"930330bb59cc122d18077e842d87e3018d3b486d764c21a61c645c022f53820a510d03d0909b583ea454817bc6b9aa0da406daa14695b93afcddeda047456805","signSignature":"635937eca65ff5567df83d6e8db37fdc4b0cbda1fd15d426dfc9d0d3619076512ae8e5b558ece04b5375528fe5440641d47120033adf87d38b86be9332dc7a0d","signatures":null,"confirmations":"1620865","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"8ca609e3b1b2f40a2ef84d33fccf71527a99d41514ee08b09e101c322e5fff75","currency":"Facebook.FBC","amount":"100","amountShow":"10","precision":1}}}],"count":4}
+````
+
+
+
 ### 2.8 DAPP
 
 #### 2.8.1 Get all dapps registered in mainnet
