@@ -252,38 +252,6 @@ JSON Response Example:
 }
 ```
 
-#### 2.1.6 Generate new account (insecure)
-
-Interface Address: /api/accounts/new'
-Request Method: get
-Response Parameter Description:
-
-| Name       | Type   | Description                             |
-| ---------- | ------ | --------------------------------------- |
-| success    | bool   | true: response data return successfully |
-| secret     | string |                                         |
-| publicKey  | string |                                         |
-| privateKey | string |                                         |
-| address    | string |                                         |
-
-Request Example:
-
-```
-curl -k -X GET 'http://NASGONODEIP:9040/api/accounts/new  
-```
-
-JSON Response Example:
-
-```
-{
-"success":true,
-"secret":"stumble vacuum safe genre shoe gorilla foster once soda recipe grief warm",
-"publicKey":"0d744c3a74426d629199989cd657f3d2c9cefa9d27ba39f2cbb31f35a3027a00",
-"privateKey":"a0890f3b0e8c29dae8f2a2883f716347d8c8f26cded09f090186ebdad502918a0d744c3a74426d629199989cd657f3d2c9cefa9d27ba39f2cbb31f35a3027a00",
-"address":"NAkLZLBJocaXWn2oVXMPtJjumZDAuCzFVP"
-}
-```
-
 
 
 ### 2.2 Transactions
@@ -1123,7 +1091,7 @@ Response Parameter Description:
 Request example:
 
 ```
-curl -X GET -H "Content-Type: application/JSON"  'http://localhost:4096/api/uia/assets?offset=5&limit=2' && echo
+curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/assets?offset=5&limit=2' && echo
 ```
 
 JSON Response:
@@ -1192,7 +1160,7 @@ Response Parameter Description:
 Request example:
 
 ```
-curl -X GET -H "Content-Type: application/JSON" 'http://localhost:4096/api/uia/balances/NFoAosRG8Ycnrj68aYuJnLe9FB7VVtgmt1' && echo
+curl -X GET -H "Content-Type: application/JSON" 'http://localhost:9040/api/uia/balances/NFoAosRG8Ycnrj68aYuJnLe9FB7VVtgmt1' && echo
 ```
 
 JSON Response:
@@ -1249,7 +1217,7 @@ Response Parameter Description:
 Request example:
 
 ```
-curl -X GET -H "Content-Type: application/JSON"  'http://localhost:4096/api/uia/assets/EXCHANGE.BTC'
+curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/assets/EXCHANGE.BTC'
 ```
 
 JSON Response:
@@ -1302,6 +1270,12 @@ Response Parameter Description:
 | transactions | JSON    |                                  |
 
 Request example:
+
+```
+curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/transactions/my/N2BxCH4EJqD2ACr4vto6nFQML25oZ5LE2g'
+```
+
+
 
 ````
 {"success":true,
@@ -1366,6 +1340,80 @@ Request example:
 ],
 "count":7}
 ````
+
+
+
+#### 2.7.7 Get Asset balance by address and asset name
+
+API Endpoint:/api/uia/balances/:address/:currency
+HTTP Verb: GET
+Format: urlencoded
+
+Request Parameter Description:
+
+| Name     | Type    | Required | Description     |
+| -------- | ------- | -------- | --------------- |
+| address  | string  | Y        |                 |
+| currency | string  | Y        |                 |
+| limit    | integer | N        | min 0 , max 100 |
+| offset   | integer | N        | min 0           |
+
+Response Parameter Description:
+
+| Name     | Type  | Description |
+| -------- | ----- | ----------- |
+| success  | boole |             |
+| balances | list  |             |
+
+Request example:
+
+```
+curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/balances/N2BxCH4EJqD2ACr4vto6nFQML25oZ5LE2g/OBX.OBX'
+```
+
+Response example:
+
+```
+{"success":true,"balance":{"currency":"OBX.OBX","balance":"100000000","maximum":"100000000000000000000","precision":8,"quantity":"100000000000000000000","writeoff":0,"allowWriteoff":0,"allowWhitelist":0,"allowBlacklist":0,"maximumShow":"1000000000000","quantityShow":"1000000000000","balanceShow":"1"}}
+```
+
+
+
+#### 2.7.8 Get Assets balances by address
+
+API Endpoint:/api/uia/balances/:address
+HTTP Verb: GET
+Format: urlencoded
+
+Request Parameter Description:
+
+| Name    | Type    | Required | Description     |
+| ------- | ------- | -------- | --------------- |
+| address | string  | Y        |                 |
+| limit   | integer | N        | min 0 , max 100 |
+| offset  | integer | N        | min 0           |
+
+Response Parameter Description:
+
+| Name     | Type  | Description |
+| -------- | ----- | ----------- |
+| success  | boole |             |
+| balances | list  |             |
+| count    | int   |             |
+
+Request example:
+
+````
+curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/balances/N2BxCH4EJqD2ACr4vto6nFQML25oZ5LE2g'
+````
+
+Json example:
+
+````
+{"success":true,"balances":[{"currency":"TRADE.TRADE","balance":"100000000","maximum":"100000000000000000","precision":8,"quantity":"100000000000000000","writeoff":0,"allowWriteoff":0,"allowWhitelist":0,"allowBlacklist":0,"maximumShow":"1000000000","quantityShow":"1000000000","balanceShow":"1"},{"currency":"OBX.OBX","balance":"100000000","maximum":"100000000000000000000","precision":8,"quantity":"100000000000000000000","writeoff":0,"allowWriteoff":0,"allowWhitelist":0,"allowBlacklist":0,"maximumShow":"1000000000000","quantityShow":"1000000000000","balanceShow":"1"}],"count":2}
+````
+
+
 
 ### 2.8 DAPP
 
