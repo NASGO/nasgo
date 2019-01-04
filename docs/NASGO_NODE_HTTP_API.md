@@ -1,3 +1,7 @@
+```
+{"success":true,"transactions":[{"id":"1adb377af0923c3f518d58d35fbc71072853d2c06109e416fc5404da8a6d26ce","height":"621557","blockId":"587828d9a1ec9bceac6aa2fe02c2e301eba2c0180e110181bb8e5b17f5f8866b","type":14,"timestamp":7706060,"senderPublicKey":"948de3bdef0960d2372e124d1756c7efa49b57505a727ad1dc3e57541f329415","senderId":"NbkNtRrjBaAfLt7MsoNjuv3x92ZywVsr3","recipientId":"NAfzViYtUMX6yUbou2ndLEo4HTH6twqnYi","amount":0,"fee":1000000,"signature":"6468dd0c2e218e6ebade8cd289b7b8e97f96274cef690ed5fbb3fbacf8a4c24bc25641491d149cb9796d0fc651f03dd8b9a66e9a8284ce4d53649309da97d10f","signSignature":"","signatures":null,"confirmations":"1806377","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"1adb377af0923c3f518d58d35fbc71072853d2c06109e416fc5404da8a6d26ce","currency":"OBX.OBX","amount":"100000000000","amountShow":"1000","precision":8}}},{"id":"f639e8e8465403efd877d43f99decf210733e5e4400a140f2aaf5028780a82da","height":"621594","blockId":"b8d41a2ffadefdce86d50e317a5971e102c7f0f007fd70ae4f3f1c1cdd42752e","type":14,"timestamp":7706435,"senderPublicKey":"948de3bdef0960d2372e124d1756c7efa49b57505a727ad1dc3e57541f329415","senderId":"NbkNtRrjBaAfLt7MsoNjuv3x92ZywVsr3","recipientId":"NQ8EC9KUMwosXZ3R3Hn89fzVN9PuUHPaH1","amount":0,"fee":1000000,"signature":"d8851ca8e6b21c3d7fe376b7710dc2f4c2fc6ecd6fa3f7c997a1a62e4fc05db8eac2d6bdef2892d14dbbfe7993eb3031d3998282542c0914989d15c9f1a1b807","signSignature":"","signatures":null,"confirmations":"1806340","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"f639e8e8465403efd877d43f99decf210733e5e4400a140f2aaf5028780a82da","currency":"OBX.OBX","amount":"100000000000","amountShow":"1000","precision":8}}},{"id":"a7779830ff26ddfb9a5cbce73c87c737ec47f7395d5b8f3e80fe553758a56c15","height":"621671","blockId":"a815ce77443315dc33a0d00166a87bc108458091fdac8eb908018a00dee6b7f6","type":14,"timestamp":7707242,"senderPublicKey":"948de3bdef0960d2372e124d1756c7efa49b57505a727ad1dc3e57541f329415","senderId":"NbkNtRrjBaAfLt7MsoNjuv3x92ZywVsr3","recipientId":"NG4PAQFg96dMv11yUkGYrDYfogA1A7L2st","amount":0,"fee":1000000,"signature":"85bdef15907f90da042f19c991097ea507706c37df4cfadd8aa504c3b913a6aef59977ca2767f553450140ba1ec3e09ea22859dca92a99de487a5edbdba3f908","signSignature":"","signatures":null,"confirmations":"1806263","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"a7779830ff26ddfb9a5cbce73c87c737ec47f7395d5b8f3e80fe553758a56c15","currency":"OBX.OBX","amount":"100000000000","amountShow":"1000","precision":8}}}],"count":771}
+```
+
 # NASGO NODE HTTP API LIST
 
 [TOC]
@@ -1135,67 +1139,73 @@ JSON Response:
 }
 ```
 
-#### 2.7.4 Get the balance of all assets created by a account
+#### 2.7.4 Get issuer information by address
 
-API Endpoint: /api/uia/balances/:address
+API Endpoint:/api/uia/issuers/:address
 HTTP Verb: GET
 Format: urlencoded
 
 Request Parameter Description:
 
-| Name    | Type    | Required | Description                              |
-| ------- | ------- | -------- | ---------------------------------------- |
-| address | string  | Y        | Nasgo account address                    |
-| limit   | integer | N        | maximum number of records to return, between 0 and 100 |
-| offset  | integer | N        | Offset, minimum 0                        |
+| Name    | Type   | Required | Description           |
+| ------- | ------ | -------- | --------------------- |
+| address | string | Y        | Nasgo account address |
 
 Response Parameter Description:
 
-| Name     | Type    | Description                              |
-| -------- | ------- | ---------------------------------------- |
-| success  | boolean | Whether operation was successful         |
-| balances | Array   | Asset array, details owned, each element is an asset, including asset name, balance, cap, precision, current circulation, whether to cancel (0: not cancelled, 1: cancelled) |
-| count    | integer | The number of assets currently owned by this address |
+| Name    | Type    | Description                      |
+| ------- | ------- | -------------------------------- |
+| success | boolean | Whether operation was successful |
+| issuer  | dict    |                                  |
 
 Request example:
 
 ```
-curl -X GET -H "Content-Type: application/JSON" 'http://localhost:9040/api/uia/balances/NFoAosRG8Ycnrj68aYuJnLe9FB7VVtgmt1' && echo
+curl -X GET -H "Content-Type: application/JSON" 'http://localhost:9040/api/uia/issuers/N253Wwqn68MiXMFy1Jyn9HqVisTJWgPw11' && echo
 ```
 
 JSON Response:
 
 ```
-{
-"success":true,"balances":[
-{"currency":"EXCHANGE.BTC",
-"balance":"9999010000000000",
-"maximum":"10000000000000000",
-"precision":8,
-"quantity":"10000000000000000",
-"writeoff":0,
-"allowWriteoff":0,
-"allowWhitelist":0,
-"allowBlacklist":0,
-"maximumShow":"100000000",
-"quantityShow":"100000000",
-"balanceShow":"99990100"},
-{"currency":"EXCHANGE.ETH",
-"balance":"10000000000000000",
-"maximum":"10000000000000000",
-"precision":8,
-"quantity":"10000000000000000",
-"writeoff":0,"allowWriteoff":0,
-"allowWhitelist":0,
-"allowBlacklist":0,
-"maximumShow":"100000000",
-"quantityShow":"100000000",
-"balanceShow":"100000000"}
-],
-"count":2}
+{"success":true,"issuer":{"name":"AIRIS","desc":"Korean Black Ginseng Distribution"}}
 ```
 
-#### 2.7.5 Get specified asset information
+
+
+#### 2.7.5 Get assets list issued by issuer name
+
+API Endpoint:/api/uia/issuers/:name/assets
+HTTP Verb: GET
+Format: urlencoded
+
+Request Parameter Description:
+
+| Name | Type   |
+| ---- | ------ |
+| name | string |
+
+Response Parameter Description:
+
+| Name    | Type |
+| ------- | ---- |
+| success | bool |
+| assets  | json |
+
+Request example:
+
+````
+curl -X GET -H "Content-Type: application/JSON" 'http://localhost:9040/api/uia/issuers/AIRIS/assets' && echo
+````
+
+Json example:
+
+````
+{"success":true,"assets":[{"name":"AIRIS.ARS","desc":"Tokens to use for all of AIRIS's Assets","maximum":"2000000000000000000","precision":8,"strategy":"","quantity":"2000000000000000000","height":1794382,"issuerId":"N253Wwqn68MiXMFy1Jyn9HqVisTJWgPw11","acl":0,"writeoff":0,"allowWriteoff":0,"allowWhitelist":0,"allowBlacklist":0,"maximumShow":"20000000000","quantityShow":"20000000000"}],"count":1}
+````
+
+
+
+#### 2.7.6 Get specified asset information
 
 API Endpoint: /api/uia/assets/:name
 HTTP Verb: GET
@@ -1248,7 +1258,7 @@ JSON Response:
 
 
 
-#### 2.7.6 Get Assets Transactions List by address
+#### 2.7.7 Get Assets Transactions List by address
 
 API Endpoint:/api/uia/transactions/my/:address
 HTTP Verb: GET
@@ -1343,7 +1353,7 @@ curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/
 
 
 
-#### 2.7.7 Get Asset balance by address and asset name
+#### 2.7.8 Get Asset balance by address and asset name
 
 API Endpoint:/api/uia/balances/:address/:currency
 HTTP Verb: GET
@@ -1379,7 +1389,7 @@ Response example:
 
 
 
-#### 2.7.8 Get Assets balances by address
+#### 2.7.9 Get Assets balances by address
 
 API Endpoint:/api/uia/balances/:address
 HTTP Verb: GET
@@ -1415,7 +1425,7 @@ Json example:
 
 
 
-#### 2.7.9 Get Assets Transactions List by address and asset name
+#### 2.7.10 Get Assets Transactions List by address and asset name
 
 API Endpoint:/api/uia/transactions/my/:address/:currency
 HTTP Verb: GET
@@ -1449,6 +1459,42 @@ JSON example:
 ````
 {"success":true,"transactions":[{"id":"52c4d8464ae334137dd18b5fd73dfa2eb23e05d95eebaa97576b852f6edce48e","height":"259857","blockId":"87e2b75901e3e04e66a01429f7c36d909904587e14f045c7aa463dd9d36d98d6","type":14,"timestamp":3978438,"senderPublicKey":"d51ae0c19bc435bfd5a9509565b3ddfe44a2ed9a2838347b095d49c69b113809","senderId":"NDQ1RcERyhvH5t3jv6zkjFUwe2qeeYZXex","recipientId":"NJamWkUNVkYRVnzMxrTxJD5X9h4gzfFtK9","amount":0,"fee":1000000,"signature":"4bef7b08dbc47259ec857acc752f5710072b2e22de42e87d7d65456d3792939e5fef97f139933fcb743b94d795efa8019ce6090943563a5dd6ebdcef8809be0e","signSignature":"","signatures":null,"confirmations":"2160276","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"52c4d8464ae334137dd18b5fd73dfa2eb23e05d95eebaa97576b852f6edce48e","currency":"Facebook.FBC","amount":"1000","amountShow":"100","precision":1}}},{"id":"8ca609e3b1b2f40a2ef84d33fccf71527a99d41514ee08b09e101c322e5fff75","height":"799268","blockId":"c2bf9d62a3a4858eb18c05cc18001ec1bca6d5b37aef0bce2667fdb572386ee9","type":14,"timestamp":9537501,"senderPublicKey":"f1da29b4c6c3f5d041f77fbc92477ba793b5a25a9ad642f9fe449dd463dc2b5c","senderId":"NJamWkUNVkYRVnzMxrTxJD5X9h4gzfFtK9","recipientId":"N4eUyj8rosKaPBdTxMPwq1ykJDcw97sGae","amount":0,"fee":1000000,"signature":"930330bb59cc122d18077e842d87e3018d3b486d764c21a61c645c022f53820a510d03d0909b583ea454817bc6b9aa0da406daa14695b93afcddeda047456805","signSignature":"635937eca65ff5567df83d6e8db37fdc4b0cbda1fd15d426dfc9d0d3619076512ae8e5b558ece04b5375528fe5440641d47120033adf87d38b86be9332dc7a0d","signatures":null,"confirmations":"1620865","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"8ca609e3b1b2f40a2ef84d33fccf71527a99d41514ee08b09e101c322e5fff75","currency":"Facebook.FBC","amount":"100","amountShow":"10","precision":1}}}],"count":4}
 ````
+
+
+
+#### 2.7.11 Get Assets Transactions List by  asset name
+
+API Endpoint:/api/uia/transactions/:currency
+HTTP Verb: GET
+Format: urlencoded
+
+Request Parameter Description:
+
+| Name     | Type    | Required | Description |
+| -------- | ------- | -------- | ----------- |
+| currency | string  | Y        |             |
+| limit    | integer | N        |             |
+| offset   | integer | N        |             |
+
+Response Parameter Description:
+
+| Name         | Type    | Description |
+| ------------ | ------- | ----------- |
+| success      | boole   |             |
+| transactions | list    |             |
+| count        | integer |             |
+
+Request example:
+
+```
+curl -X GET -H "Content-Type: application/JSON"  'http://localhost:9040/api/uia/transactions/OBX.OBX?limit=3'
+```
+
+JSON example:
+
+```
+{"success":true,"transactions":[{"id":"1adb377af0923c3f518d58d35fbc71072853d2c06109e416fc5404da8a6d26ce","height":"621557","blockId":"587828d9a1ec9bceac6aa2fe02c2e301eba2c0180e110181bb8e5b17f5f8866b","type":14,"timestamp":7706060,"senderPublicKey":"948de3bdef0960d2372e124d1756c7efa49b57505a727ad1dc3e57541f329415","senderId":"NbkNtRrjBaAfLt7MsoNjuv3x92ZywVsr3","recipientId":"NAfzViYtUMX6yUbou2ndLEo4HTH6twqnYi","amount":0,"fee":1000000,"signature":"6468dd0c2e218e6ebade8cd289b7b8e97f96274cef690ed5fbb3fbacf8a4c24bc25641491d149cb9796d0fc651f03dd8b9a66e9a8284ce4d53649309da97d10f","signSignature":"","signatures":null,"confirmations":"1806377","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"1adb377af0923c3f518d58d35fbc71072853d2c06109e416fc5404da8a6d26ce","currency":"OBX.OBX","amount":"100000000000","amountShow":"1000","precision":8}}},{"id":"f639e8e8465403efd877d43f99decf210733e5e4400a140f2aaf5028780a82da","height":"621594","blockId":"b8d41a2ffadefdce86d50e317a5971e102c7f0f007fd70ae4f3f1c1cdd42752e","type":14,"timestamp":7706435,"senderPublicKey":"948de3bdef0960d2372e124d1756c7efa49b57505a727ad1dc3e57541f329415","senderId":"NbkNtRrjBaAfLt7MsoNjuv3x92ZywVsr3","recipientId":"NQ8EC9KUMwosXZ3R3Hn89fzVN9PuUHPaH1","amount":0,"fee":1000000,"signature":"d8851ca8e6b21c3d7fe376b7710dc2f4c2fc6ecd6fa3f7c997a1a62e4fc05db8eac2d6bdef2892d14dbbfe7993eb3031d3998282542c0914989d15c9f1a1b807","signSignature":"","signatures":null,"confirmations":"1806340","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"f639e8e8465403efd877d43f99decf210733e5e4400a140f2aaf5028780a82da","currency":"OBX.OBX","amount":"100000000000","amountShow":"1000","precision":8}}},{"id":"a7779830ff26ddfb9a5cbce73c87c737ec47f7395d5b8f3e80fe553758a56c15","height":"621671","blockId":"a815ce77443315dc33a0d00166a87bc108458091fdac8eb908018a00dee6b7f6","type":14,"timestamp":7707242,"senderPublicKey":"948de3bdef0960d2372e124d1756c7efa49b57505a727ad1dc3e57541f329415","senderId":"NbkNtRrjBaAfLt7MsoNjuv3x92ZywVsr3","recipientId":"NG4PAQFg96dMv11yUkGYrDYfogA1A7L2st","amount":0,"fee":1000000,"signature":"85bdef15907f90da042f19c991097ea507706c37df4cfadd8aa504c3b913a6aef59977ca2767f553450140ba1ec3e09ea22859dca92a99de487a5edbdba3f908","signSignature":"","signatures":null,"confirmations":"1806263","args":[],"message":"","asset":{"uiaTransfer":{"transactionId":"a7779830ff26ddfb9a5cbce73c87c737ec47f7395d5b8f3e80fe553758a56c15","currency":"OBX.OBX","amount":"100000000000","amountShow":"1000","precision":8}}}],"count":771}
+```
 
 
 
