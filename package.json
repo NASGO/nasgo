@@ -29,7 +29,7 @@
     "ip": "1.1.3",
     "jshint": "^2.9.5",
     "json-sql": "git+https://github.com/NASGO/json-sql.git",
-    "lodash": "^3.9.3",
+    "lodash": "^4.17.15",
     "mathjs": "^3.17.0",
     "method-override": "2.3.6",
     "nasgo-js": "git+https://github.com/NASGO/nasgo-js.git",
